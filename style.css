@@ -1,0 +1,237 @@
+/* ===== রঙ আর বেসিক সেটিং ===== */
+:root {
+  --bg: #0f0c29;
+  --card: rgba(255, 255, 255, 0.08);
+  --border: rgba(255, 255, 255, 0.15);
+  --text: #f5f5ff;
+  --muted: #b8b5d6;
+  --accent-1: #ff6a88;
+  --accent-2: #ff99ac;
+  --accent-3: #7f5af0;
+  --radius: 20px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Poppins", "Hind Siliguri", sans-serif;
+  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  overflow-x: hidden;
+}
+
+/* ===== পেছনের ভাসমান বল ===== */
+.blob {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.55;
+  z-index: -1;
+  animation: float 14s ease-in-out infinite;
+}
+.blob-1 { width: 380px; height: 380px; background: var(--accent-1); top: -100px; left: -100px; }
+.blob-2 { width: 320px; height: 320px; background: var(--accent-3); bottom: -80px; right: -80px; animation-delay: -5s; }
+.blob-3 { width: 250px; height: 250px; background: #2cb1bc; top: 40%; left: 60%; animation-delay: -9s; }
+
+@keyframes float {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(40px, -30px) scale(1.1); }
+}
+
+/* ===== মূল কার্ড (কাঁচের মতো) ===== */
+.card {
+  width: 100%;
+  max-width: 640px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  padding: 36px 32px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+}
+
+header { text-align: center; margin-bottom: 28px; }
+h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, var(--accent-2), #ffd6e0, #c3b1ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.subtitle { color: var(--muted); margin-top: 6px; }
+
+/* ===== বাছাইয়ের বাটন (chips) ===== */
+.controls { display: flex; flex-direction: column; gap: 16px; margin-bottom: 24px; }
+.group { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.label { width: 48px; color: var(--muted); font-size: 0.95rem; }
+.chips { display: flex; gap: 8px; flex-wrap: wrap; }
+
+.chip {
+  font-family: inherit;
+  font-size: 0.95rem;
+  padding: 8px 18px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.chip:hover { background: rgba(255, 255, 255, 0.1); }
+.chip.active {
+  background: linear-gradient(135deg, var(--accent-1), var(--accent-3));
+  border-color: transparent;
+  box-shadow: 0 4px 15px rgba(255, 106, 136, 0.35);
+}
+
+/* ===== নাম দেখানোর জায়গা ===== */
+.result {
+  background: rgba(0, 0, 0, 0.25);
+  border-radius: 16px;
+  padding: 28px 20px 18px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.name-display {
+  min-height: 70px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.name-main { font-size: 2.4rem; font-weight: 700; letter-spacing: 0.5px; }
+.name-meaning { color: var(--muted); font-size: 0.95rem; margin-top: 4px; }
+.placeholder { color: var(--muted); font-size: 1.1rem; }
+
+/* নাম আসার অ্যানিমেশন */
+.pop { animation: pop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1); }
+@keyframes pop {
+  0% { transform: scale(0.6) translateY(10px); opacity: 0; }
+  100% { transform: scale(1) translateY(0); opacity: 1; }
+}
+.shuffling .name-main { opacity: 0.6; filter: blur(1px); }
+
+.actions { display: flex; justify-content: center; gap: 10px; margin-top: 16px; }
+.icon-btn {
+  font-family: inherit;
+  font-size: 0.9rem;
+  padding: 7px 16px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.icon-btn:hover:not(:disabled) { background: rgba(255, 255, 255, 0.15); }
+.icon-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+
+/* ===== বড় বাটন ===== */
+.generate-btn {
+  width: 100%;
+  font-family: inherit;
+  font-size: 1.2rem;
+  font-weight: 600;
+  padding: 16px;
+  border: none;
+  border-radius: 14px;
+  color: white;
+  cursor: pointer;
+  background: linear-gradient(135deg, var(--accent-1), var(--accent-3));
+  background-size: 200% 200%;
+  box-shadow: 0 10px 30px rgba(127, 90, 240, 0.4);
+  transition: transform 0.15s ease, box-shadow 0.2s ease, background-position 0.5s ease;
+}
+.generate-btn:hover { transform: translateY(-2px); background-position: 100% 0; box-shadow: 0 14px 36px rgba(255, 106, 136, 0.45); }
+.generate-btn:active { transform: translateY(1px) scale(0.99); }
+
+.hint { text-align: center; color: var(--muted); font-size: 0.85rem; margin-top: 10px; }
+kbd {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  padding: 1px 6px;
+  font-family: inherit;
+}
+
+/* ===== তালিকা ===== */
+.lists { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 28px; }
+.list-box {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 14px;
+  padding: 16px;
+}
+.list-box h2 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.list-box ul { list-style: none; max-height: 180px; overflow-y: auto; }
+.list-box li {
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.list-box li:nth-child(odd) { background: rgba(255, 255, 255, 0.04); }
+.list-box li.empty { color: var(--muted); background: none; font-size: 0.9rem; }
+.remove-fav {
+  background: none;
+  border: none;
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 1rem;
+}
+.remove-fav:hover { color: var(--accent-1); }
+.clear-btn {
+  font-family: inherit;
+  font-size: 0.75rem;
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  border-radius: 6px;
+  padding: 2px 8px;
+  cursor: pointer;
+}
+.clear-btn:hover { color: var(--text); }
+
+/* ===== ছোট নোটিফিকেশন ===== */
+.toast {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: #fff;
+  color: #222;
+  padding: 10px 22px;
+  border-radius: 999px;
+  font-weight: 600;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease;
+}
+.toast.show { transform: translateX(-50%) translateY(0); }
+
+/* ===== মোবাইলের জন্য ===== */
+@media (max-width: 560px) {
+  .card { padding: 26px 18px; }
+  h1 { font-size: 1.5rem; }
+  .name-main { font-size: 1.9rem; }
+  .lists { grid-template-columns: 1fr; }
+  .label { width: 100%; }
+}

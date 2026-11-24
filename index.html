@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Random Name Generator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- পেছনের রঙিন ভাসমান বল -->
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+
+  <main class="card">
+    <header>
+      <h1>🎲 Random Name Generator</h1>
+      <p class="subtitle">এক ক্লিকে সুন্দর একটা নাম খুঁজে নিন</p>
+    </header>
+
+    <!-- নামের ধরন বেছে নেওয়ার বাটন -->
+    <section class="controls">
+      <div class="group">
+        <span class="label">ভাষা</span>
+        <div class="chips" id="languageChips">
+          <button class="chip active" data-value="bangla">বাংলা</button>
+          <button class="chip" data-value="english">English</button>
+          <button class="chip" data-value="fantasy">Fantasy ✨</button>
+        </div>
+      </div>
+
+      <div class="group">
+        <span class="label">লিঙ্গ</span>
+        <div class="chips" id="genderChips">
+          <button class="chip active" data-value="any">যেকোনো</button>
+          <button class="chip" data-value="male">ছেলে</button>
+          <button class="chip" data-value="female">মেয়ে</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- এখানে নাম দেখাবে -->
+    <section class="result">
+      <div class="name-display" id="nameDisplay">
+        <span class="placeholder">নিচের বাটনে চাপুন 👇</span>
+      </div>
+      <div class="actions">
+        <button class="icon-btn" id="copyBtn" title="কপি করুন" disabled>📋 কপি</button>
+        <button class="icon-btn" id="favBtn" title="পছন্দের তালিকায় রাখুন" disabled>🤍 সেভ</button>
+      </div>
+    </section>
+
+    <button class="generate-btn" id="generateBtn">নাম বানাও!</button>
+    <p class="hint">টিপস: কীবোর্ডে <kbd>Space</kbd> চাপলেও নতুন নাম আসবে</p>
+
+    <!-- আগের নাম আর পছন্দের নাম -->
+    <section class="lists">
+      <div class="list-box">
+        <h2>🕘 আগের নামগুলো</h2>
+        <ul id="historyList"><li class="empty">এখনো কিছু নেই</li></ul>
+      </div>
+      <div class="list-box">
+        <h2>❤️ পছন্দের নাম <button class="clear-btn" id="clearFavBtn">মুছুন</button></h2>
+        <ul id="favList"><li class="empty">এখনো কিছু নেই</li></ul>
+      </div>
+    </section>
+  </main>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
